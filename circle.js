@@ -11,23 +11,10 @@ space.addEventListener("click", function(e) {
 
 //spawns a cirlce in the svg window
 var dotMe = function(x, y) {
-    ns = initiateCircle();
-    ns.setAttribute("cx", x);
-    ns.setAttribute("cy", y);
+    ns = initiateCircle(x, y);
     // addEventListener that turns fill to blue
     ns.addEventListener("click", colorin, true);
     ns.addEventListener("click", stoppropagation);
-    /*ns.addEventListener("click", function(e) {
-      e.preventDefault();
-      e.stopPropagation(); // stop the event flow from propagating to the bubble phase which spawns a circle
-      ns.setAttribute("fill", "blue");
-      ns.addEventListener("click", function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        ns.setAttribute("cx", Math.random() * 500);
-        ns.setAttribute("cy", Math.random() * 500);
-      }, true);
-    }, true); */
     space.appendChild(ns);
     return;
 }
@@ -47,12 +34,14 @@ var colorin = function(e){
 }
 
 
-var initiateCircle = function() {
-  var ns = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-  ns.setAttribute("stroke", "#9A98C0");
-  ns.setAttribute("fill", "#9A98C0");
-  ns.setAttribute("r", "20");
-  return ns;
+var initiateCircle = function(x,y) {
+    var ns = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    ns.setAttribute("stroke", "#9A98C0");
+    ns.setAttribute("fill", "#9A98C0");
+    ns.setAttribute("r", "20");
+    ns.setAttribute("cx", x);
+    ns.setAttribute("cy", y);
+    return ns;
 }
 
 
